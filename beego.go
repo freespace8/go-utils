@@ -43,13 +43,23 @@ func getAllFiles(dirPth string) (files []string, err error) {
 	return files, nil
 }
 
-func fixControllers(path string) {
+func fixControllers(path, utilsPath, oldModelsPath, newModelsPath string) {
 	controllersPath := filepath.Join(path, "controllers")
 	if fileList, err := getAllFiles(controllersPath); err == nil {
 		for _, fileName := range fileList {
 			if data, err := ioutil.ReadFile(fileName); err == nil {
 				newData := strings.ReplaceAll(string(data), "c.Data[\"json\"] = l", "c.Data[\"json\"] = utils.PageUtil(count, offset, limit, l)")
 				newData = strings.ReplaceAll(newData, "l, err := models.", "l, count, err := models.")
+				newData = strings.ReplaceAll(newData, oldModelsPath, newModelsPath)
+
+				if !strings.Contains(newData, utilsPath) {
+					newStr :=
+						`	"vito/vito3/modules/utils"
+
+	"github.com/astaxie/beego"`
+					newData = strings.ReplaceAll(newData, "	\"github.com/astaxie/beego\"", newStr)
+				}
+
 				ioutil.WriteFile(fileName, []byte(newData), 0644)
 			}
 		}
@@ -87,8 +97,8 @@ func fixModels(path string) {
 	}
 }
 
-func RunBeego(path string) {
-	fmt.Println("添加beego分页功能")
-	fixControllers(path)
+func RunBeego(path, utilsPath, oldModelsPath, newModelsPath string) {
+	fmt.Println("添加beego分页功能", utilsPath)
+	fixControllers(path, utilsPath, oldModelsPath, newModelsPath)
 	fixModels(path)
 }

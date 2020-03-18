@@ -3,4 +3,4 @@
 beego:
     自动增加分页功能
     
-go-utils.exe -beego -path=C:\Users\Administrator\go\src\vito\vito3\demo
+go build && go-utils.exe -beego -path=C:\Users\Administrator\go\src\vito\vito3\demo -utilSpath=vito/vito3/modules/utils -oldModelsPath=vito/vito3/demo/models -newModelsPath=vito/vito3/modules/beeCasbin/models

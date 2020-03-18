@@ -1,7 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+)
 
 func main() {
-	fmt.Println("hello")
+	beegoPtr := flag.Bool("beego", false, "")
+	pathPtr := flag.String("path", "", "")
+	flag.Usage = func() {}
+	flag.Parse()
+
+	if beegoPtr != nil && *beegoPtr && pathPtr != nil {
+		path := *pathPtr
+		RunBeego(path)
+	}
 }

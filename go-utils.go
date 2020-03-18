@@ -7,7 +7,7 @@ import (
 func main() {
 	beegoPtr := flag.Bool("beego", false, "")
 	pathPtr := flag.String("path", "", "")
-	utilsPathPtr := flag.String("utilSpath", "", "")
+	utilsPathPtr := flag.String("utilsPath", "", "")
 	oldModelsPathPtr := flag.String("oldModelsPath", "", "")
 	newModelsPathPtr := flag.String("newModelsPath", "", "")
 	flag.Usage = func() {}

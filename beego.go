@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -87,6 +88,7 @@ func fixModels(path string) {
 }
 
 func RunBeego(path string) {
+	fmt.Println("添加beego分页功能")
 	fixControllers(path)
 	fixModels(path)
 }

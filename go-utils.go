@@ -14,7 +14,7 @@ func main() {
 	flag.Usage = func() {}
 	flag.Parse()
 
-	fmt.Println("go-utils v1.2.1")
+	fmt.Println("go-utils v1.2.2")
 	if beegoPtr != nil && *beegoPtr && pathPtr != nil && utilsPathPtr != nil && oldModelsPathPtr != nil && newModelsPathPtr != nil {
 		path := *pathPtr
 		utilsPath := *utilsPathPtr

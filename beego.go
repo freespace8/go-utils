@@ -51,6 +51,9 @@ func fixControllers(path, utilsPath, oldModelsPath, newModelsPath string) {
 				newData := strings.ReplaceAll(string(data), "c.Data[\"json\"] = l", "c.Data[\"json\"] = utils.PageUtil(count, offset, limit, l)")
 				newData = strings.ReplaceAll(newData, "l, err := models.", "l, count, err := models.")
 				newData = strings.ReplaceAll(newData, oldModelsPath, newModelsPath)
+				newData = strings.ReplaceAll(newData, "c.Data[\"json\"] = v", "c.Data[\"json\"] = utils.MakeSuccessResult(v)")
+				newData = strings.ReplaceAll(newData, "c.Data[\"json\"] = err.Error()", "c.Data[\"json\"] = utils.MakeSuccessResult(err.Error())")
+				newData = strings.ReplaceAll(newData, "c.Data[\"json\"] = \"OK\"", "c.Data[\"json\"] = utils.MakeFaildResult(\"OK\")")
 
 				if !strings.Contains(newData, utilsPath) {
 					newStr :=

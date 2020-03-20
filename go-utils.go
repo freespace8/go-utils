@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 )
 
 func main() {
@@ -13,6 +14,7 @@ func main() {
 	flag.Usage = func() {}
 	flag.Parse()
 
+	fmt.Println("go-utils v1.2")
 	if beegoPtr != nil && *beegoPtr && pathPtr != nil && utilsPathPtr != nil && oldModelsPathPtr != nil && newModelsPathPtr != nil {
 		path := *pathPtr
 		utilsPath := *utilsPathPtr
